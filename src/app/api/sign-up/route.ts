@@ -8,14 +8,17 @@ import { success } from "zod";
 
 export async function POST(request: Request) {
   await dbConnect();
+  console.log("DB Connected");
   try {
     const { username, email, password } = await request.json();
+    console.log("request.json: ", { username, email, password });
     const existingUserVerifiedByUsername = await UserModel.findOne({
       username,
       isVerified: true,
     });
 
     if (existingUserVerifiedByUsername) {
+      console.log("checking username");
       return Response.json(
         {
           success: false,
@@ -28,6 +31,7 @@ export async function POST(request: Request) {
     }
 
     const existingUserByEmail = await UserModel.findOne({ email });
+    console.log("checking email");
     const verifyCode = crypto.randomInt(100000, 1000000).toString();
 
     if (existingUserByEmail) {
@@ -82,6 +86,7 @@ export async function POST(request: Request) {
         messages: [],
       });
       await newUser.save();
+      console.log("new user created");
     }
 
     //verification email

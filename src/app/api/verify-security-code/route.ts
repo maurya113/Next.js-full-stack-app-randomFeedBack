@@ -1,6 +1,5 @@
 import UserModel from "@/model/User.model";
 import { dbConnect } from "@/lib/dbConnect";
-import { success } from "zod";
 
 export async function POST(request: Request) {
   //GET method doesn't have body the data is fethed from either query parameter or from the path params both from the url only so when dealing with the sensitive data post method is used.
