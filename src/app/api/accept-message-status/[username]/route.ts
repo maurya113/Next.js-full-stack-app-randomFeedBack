@@ -3,10 +3,7 @@ import { dbConnect } from "@/lib/dbConnect";
 import UserModel from "@/model/User.model";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(
-  request: NextRequest,
-  context: { params: { username: string } }
-) {
+export async function GET(request: NextRequest, context: { params: any }) {
   await dbConnect();
   const { username } = context.params;
   console.log(username);
