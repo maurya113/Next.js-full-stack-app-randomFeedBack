@@ -3,10 +3,10 @@ import UserModel from "@/model/User.model";
 
 export async function GET(
   request: Request,
-  { params }: { params: { username: string } }
+  context: { params: { username: string } }
 ) {
   await dbConnect();
-  const { username } = params;
+  const { username } = context.params;
   console.log(username);
   if (!username) {
     return Response.json(
