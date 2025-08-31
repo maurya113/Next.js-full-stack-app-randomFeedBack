@@ -82,7 +82,7 @@ export default function Page() {
     } catch (error) {
       console.log("an error occured while signing-in: ", error);
       const axiosError = error as AxiosError<ApiResponse>;
-      let errorMessage = axiosError.response?.data.message;
+      const errorMessage = axiosError.response?.data.message;
       //axios checks the statuscode of our response if the status code is something like 200 then it is treated as a response else it is treated as error and handled by error.response
       toast(errorMessage || "something went wrong");
     } finally {

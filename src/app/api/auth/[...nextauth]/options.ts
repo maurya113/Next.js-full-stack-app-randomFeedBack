@@ -1,10 +1,8 @@
-import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 import { dbConnect } from "@/lib/dbConnect";
-import UserModel from "@/model/User.model";
+import UserModel, { User } from "@/model/User.model";
 
-import { signIn } from "next-auth/react";
 import { JWT } from "next-auth/jwt";
 import { Session } from "next-auth";
 
@@ -45,19 +43,22 @@ export const authOptions = {
           } else {
             throw new Error("incorrect password");
           }
-        } catch (error: any) {
-          throw new Error(error.message);
+        } catch (error: unknown) {
+          if (error instanceof Error) {
+            throw new Error(error.message);
+          }
+          throw new Error("An unknown error occurred");
         }
       },
     }),
   ],
   callbacks: {
     //user is only presnent while login after login all the data that is to be accessed by the session should be stored in token. because we are using the "jwt" strategy
-    async jwt({ token, user }: { token: JWT; user?: any }) {
+    async jwt({ token, user }: { token: JWT; user?: User }) {
       if (user) {
         token._id = user._id?.toString();
         token.isVerified = user.isVerified;
-        token.isAcceptingMessages = user.isAcceptingMessages;
+        token.isAcceptingMessages = user.isAcceptingMessage;
         token.username = user.username;
       }
       return token;
