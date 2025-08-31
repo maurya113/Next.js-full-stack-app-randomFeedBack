@@ -53,7 +53,7 @@ export async function GET(request: Request) {
         success: true,
         messages: user[0].messages,
       },
-      { status: 400 }
+      { status: 200 }
     );
   } catch (error) {
     console.error("error occured while getting the messages: ", error);
