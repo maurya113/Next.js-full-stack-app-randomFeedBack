@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 import { dbConnect } from "@/lib/dbConnect";
-import UserModel, { User } from "@/model/User.model";
+import UserModel from "@/model/User.model";
 
 import { JWT } from "next-auth/jwt";
 import { Session } from "next-auth";
@@ -43,22 +45,19 @@ export const authOptions = {
           } else {
             throw new Error("incorrect password");
           }
-        } catch (error: unknown) {
-          if (error instanceof Error) {
-            throw new Error(error.message);
-          }
-          throw new Error("An unknown error occurred");
+        } catch (error: any) {
+          throw new Error(error.message);
         }
       },
     }),
   ],
   callbacks: {
     //user is only presnent while login after login all the data that is to be accessed by the session should be stored in token. because we are using the "jwt" strategy
-    async jwt({ token, user }: { token: JWT; user?: User }) {
+    async jwt({ token, user }: { token: JWT; user?: any }) {
       if (user) {
         token._id = user._id?.toString();
         token.isVerified = user.isVerified;
-        token.isAcceptingMessages = user.isAcceptingMessage;
+        token.isAcceptingMessages = user.isAcceptingMessages;
         token.username = user.username;
       }
       return token;
