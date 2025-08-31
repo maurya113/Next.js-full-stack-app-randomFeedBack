@@ -3,7 +3,7 @@ import UserModel from "@/model/User.model";
 
 export async function GET(
   request: Request,
-  context: { params: { username: string } }
+  context: { params: Record<string, string> }
 ) {
   await dbConnect();
   const { username } = context.params;
