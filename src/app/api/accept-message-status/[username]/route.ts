@@ -1,12 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { dbConnect } from "@/lib/dbConnect";
 import UserModel from "@/model/User.model";
 
 export async function GET(
   request: Request,
-  context: { params: Record<string, string> }
+  { params }: { params: { username: string } }
 ) {
   await dbConnect();
-  const { username } = context.params;
+  const { username } = params;
   console.log(username);
   if (!username) {
     return Response.json(
