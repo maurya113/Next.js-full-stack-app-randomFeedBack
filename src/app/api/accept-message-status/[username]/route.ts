@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { dbConnect } from "@/lib/dbConnect";
 import UserModel from "@/model/User.model";
+import { NextRequest } from "next/server";
 
 export async function GET(
-  request: Request,
+  request: NextRequest,
   { params }: { params: { username: string } }
 ) {
   await dbConnect();
