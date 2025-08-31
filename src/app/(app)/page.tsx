@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/carousel";
 
 import messages from "@/message.json" assert { type: "json" };
-import useEmblaCarousel from "embla-carousel-react";
+
 import Autoplay from "embla-carousel-autoplay";
 
 export default function Home() {

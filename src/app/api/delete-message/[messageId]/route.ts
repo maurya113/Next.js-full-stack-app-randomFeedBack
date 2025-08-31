@@ -1,9 +1,8 @@
 import { dbConnect } from "@/lib/dbConnect";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../auth/[...nextauth]/options";
-import { success } from "zod";
+
 import UserModel from "@/model/User.model";
-import mongoose from "mongoose";
 
 export async function DELETE(
   request: Request,

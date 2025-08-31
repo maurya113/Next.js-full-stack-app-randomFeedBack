@@ -5,11 +5,11 @@ import { ApiResponse } from "@/types/ApiResponse";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@react-email/components";
 import axios, { AxiosError } from "axios";
-import { Loader2, RefreshCcw, SwitchCamera } from "lucide-react";
-import { User } from "next-auth";
+import { Loader2, RefreshCcw } from "lucide-react";
+
 import { useSession } from "next-auth/react";
 import React, { useCallback, useEffect, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { Switch } from "@/components/ui/switch";
 import { Separator } from "@radix-ui/react-separator";
