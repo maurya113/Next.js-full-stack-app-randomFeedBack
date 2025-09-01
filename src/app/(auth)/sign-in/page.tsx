@@ -18,6 +18,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 import { Loader } from "lucide-react";
+import Link from "next/link";
 
 export default function Page() {
   const router = useRouter();
@@ -99,6 +100,17 @@ export default function Page() {
             </Button>
           </form>
         </Form>
+        <div className="text-center mt-4">
+          <p>
+            new here?{" "}
+            <Link
+              href={"/sign-up"}
+              className="text-blue-600 hover:text-blue-800"
+            >
+              Sign up
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );
